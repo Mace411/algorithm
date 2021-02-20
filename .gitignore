@@ -1,2 +1,6 @@
 # Project exclude paths
 /out/
+# Intellij
+*.iml
+# Java class files
+*.class

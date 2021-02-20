@@ -93,6 +93,7 @@ public class 最长回文子串 {
             if (end - start + 1 > maxStr.length()) {
                 maxStr = s.substring(start, end + 1);/*String.valueOf(chars, start, end - start + 1);*/
             }
+            //TODO 这里可以做一个优化，假如剩下的字符长度比当前找到的最大回文串的长度小，则目前的最大回文串就是最优解了
         }
         return maxStr;
     }
