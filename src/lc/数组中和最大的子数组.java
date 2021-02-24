@@ -1,5 +1,7 @@
 package lc;
 
+import java.util.Random;
+
 /**
  * 分治策略
  * 找到数组中和最大的子数组
@@ -95,18 +97,27 @@ public class 数组中和最大的子数组 {
     }
 
     public static void main(String[] args) {
-        int[] nums = {13, -3, -25, 20, -3, -16, -23, 18, 20, -7, 12, -5, -22, 15, -4, 7/*, 13, -3, -25, 20, -3, -23, 18, 20, -7, 12, 12, -5, -22, 15, -4, 7, 13, -3, -25, 20, -3*/};
+        int[] nums = new int[100000];
+        Random random = new Random();
+        for (int i = 0; i < nums.length; i++) {
+            nums[i] = (int) (random.nextInt(1000) * (Math.pow(-1, i)));
+            System.err.print(nums[i] + "\t");
+        }
+        System.err.println();
+//        int[] nums = {13, -3, -25, 20, -3, -16, -23, 18, 20, -7, 12, -5, -22, 15, -4, 7, 13, -3, -25, 20, -3, -23, 18, 20, -7, 12, 12, -5, -22, 15, -4, 7, 13, -3, -25, 20, -3};
 
-//        long start = System.currentTimeMillis();
-//        int[] maxSubArray = findMaxSubArray(nums);
-//        System.err.println(System.currentTimeMillis() - start);
+        long start = System.currentTimeMillis();
+        int[] maxSubArray = findMaxSubArray(nums);
+        System.err.println("暴力解法耗时:" + (System.currentTimeMillis() - start));
+        System.err.println(maxSubArray[0] + "\t" + maxSubArray[1]);
 
-//        start = System.currentTimeMillis();
-        int[] maxSubArray = findMaxSubArray(nums, 0, nums.length - 1);
-        for (int i : maxSubArray) {
+        start = System.currentTimeMillis();
+        int[] maxSubArray0 = findMaxSubArray(nums, 0, nums.length - 1);
+        for (int i : maxSubArray0) {
             System.err.print(i + "\t");
         }
-//        System.err.println(System.currentTimeMillis() - start);
+        System.err.println();
+        System.err.println("分治法耗时:" + (System.currentTimeMillis() - start));
     }
 
 
