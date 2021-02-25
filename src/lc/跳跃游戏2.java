@@ -15,12 +15,34 @@ package lc;
  */
 public class 跳跃游戏2 {
     /**
-     * 从右往左推，最后一步应该是离最后一个位置最远的且能到达最后位置的点，就是找到左边的最大值，然后在以最大值为终点继续找左边的最大值
+     * 最后一步跳跃希望的是从能到达最后位置的且离最后位置最远的点跳，即index + nums[index] >= 最后位置index，且index最小
+     * 时间复杂度O(n^2)，空间复杂度O(1)
      * @param nums
      * @return
      */
-    public static int jump(int[] nums) {
+    public static int jump0(int[] nums) {
+        int position = nums.length - 1;
+        int steps = 0;
+        while (position > 0) {
+            for (int i = 0; i < position; i++) {
+                //从左到右，找到第一个能到达最后位置的点
+                if (i + nums[i] >= position) {
+                    //把当前点作为最后位置
+                    position = i;
+                    steps++;
+                    break;
+                }
+            }
+        }
+        return steps;
+    }
 
-        return 0;
+    /**
+     * 从左往右推
+     * @param nums
+     * @return
+     */
+    public static int jump1(int[] nums) {
+
     }
 }
