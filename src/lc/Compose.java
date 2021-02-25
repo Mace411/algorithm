@@ -9,7 +9,7 @@ public class Compose {
      * @param composeNum
      * @return
      */
-    public static int getNum1(int level, int composeNum) {
+    public static int calculateComsumeNum(int level, int composeNum) {
         if (level == 1) {
             return composeNum;
         }
@@ -46,6 +46,6 @@ public class Compose {
     }
 
     public static void main(String[] args) {
-
+        System.err.println(calculateComsumeNum(5, 2));
     }
 }

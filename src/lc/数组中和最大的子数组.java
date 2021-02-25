@@ -16,36 +16,28 @@ public class 数组中和最大的子数组 {
      */
     private static int[] findMaxSubArray(int[] nums) {
         if (nums.length <= 1) {
-            return new int[]{0, 0};
+            return new int[]{nums[0], 0, 0};
         }
-        int[] maxArrayIndex = new int[2];
+        int[] maxArrayIndex = new int[3];
         int max = Integer.MIN_VALUE;
-//        int a = 0;
-//        int b = 0;
-//        int c = 0;
-//        int d = 0;
         for (int i = 1; i <= nums.length; i++) {//元素个数
             int sum = 0;
-//            a++;
             for (int j = 0; j + i < nums.length; j++) {//坐标
                 if (j == 0) {
                     for (int k = 0; k < i; k++) {//O(n^2)
                         sum += nums[j + k];
-//                        b++;
                     }
                 } else {
                     sum = sum + nums[j + i - 1] - nums[j - 1];
-//                    c++;
                 }
                 if (sum > max) {
                     max = sum;
-                    maxArrayIndex[0] = j;
-                    maxArrayIndex[1] = j + i - 1;
+                    maxArrayIndex[0] = max;
+                    maxArrayIndex[1] = j;
+                    maxArrayIndex[2] = j + i - 1;
                 }
-//                d++;
             }
         }
-//        System.err.println("a:" + a + "\t" + "b:" + b + "\t" + "c:" + c + "\t" + "d:" + d);
         return maxArrayIndex;
     }
 
@@ -109,15 +101,12 @@ public class 数组中和最大的子数组 {
         long start = System.currentTimeMillis();
         int[] maxSubArray = findMaxSubArray(nums);
         System.err.println("暴力解法耗时:" + (System.currentTimeMillis() - start));
-        System.err.println(maxSubArray[0] + "\t" + maxSubArray[1]);
+        System.err.println("最大子数组和:" + maxSubArray[0] + "\t" + "i=" + maxSubArray[1] + "\t" + "j=" + maxSubArray[2]);
 
         start = System.currentTimeMillis();
         int[] maxSubArray0 = findMaxSubArray(nums, 0, nums.length - 1);
-        for (int i : maxSubArray0) {
-            System.err.print(i + "\t");
-        }
-        System.err.println();
         System.err.println("分治法耗时:" + (System.currentTimeMillis() - start));
+        System.err.println("最大子数组和:" + maxSubArray0[0] + "\t" + "i=" + maxSubArray0[1] + "\t" + "j=" + maxSubArray0[2]);
     }
 
 
