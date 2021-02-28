@@ -39,16 +39,16 @@ public class 跳跃游戏2 {
 
     /**
      * 从左往右推
-     * 每次选取当前能到达的点里的最大值，即max(nums[index + 1],nums[index + 2]...num[index+nums[index]])
-     * @param nums
+     * 每次都在可选范围内选择能跳得最远的点
+     * max(index + 1 + nums[index + 1],index + 2 + nums[index + 2]...index + nums[index+nums[index]] + num[index+nums[index]])
+     * @param nums [2，3，1，4，5，6]
      * @return
      */
     public static int jump1(int[] nums) {
-        int length = nums.length;
         int end = 0;
         int maxPosition = 0;
         int steps = 0;
-        for (int i = 0; i < length - 1; i++) {
+        for (int i = 0; i < nums.length - 1; i++) {
             maxPosition = Math.max(maxPosition, i + nums[i]);
             if (i == end) {
                 end = maxPosition;
@@ -57,4 +57,6 @@ public class 跳跃游戏2 {
         }
         return steps;
     }
+
+
 }
