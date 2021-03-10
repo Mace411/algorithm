@@ -6,37 +6,37 @@ import java.util.Queue;
 /**
  * 树的结点
  */
-public class TreeNode {
+public class TreeNode<T> {
 
-    public TreeNode left;
+    public TreeNode<T> left;
 
-    public TreeNode right;
+    public TreeNode<T> right;
 
-    private int value;
+    private T value;
 
-    public TreeNode(int value) {
+    public TreeNode(T value) {
         this.value = value;
     }
 
-    public TreeNode setLeft(TreeNode node) {
+    public TreeNode<T> setLeft(TreeNode<T> node) {
         this.left = node;
         return node;
     }
 
-    public TreeNode setRight(TreeNode node) {
+    public TreeNode<T> setRight(TreeNode<T> node) {
         this.right = node;
         return node;
     }
 
-    public TreeNode getLeft() {
+    public TreeNode<T> getLeft() {
         return left;
     }
 
-    public TreeNode getRight() {
+    public TreeNode<T> getRight() {
         return right;
     }
 
-    public int getValue() {
+    public T getValue() {
         return value;
     }
 
@@ -69,13 +69,13 @@ public class TreeNode {
 
     public static void main(String[] args) {
         //顺序 9 7 10 6 8 5 13
-        TreeNode treeRoot = new TreeNode(9);
-        treeRoot.setLeft(new TreeNode(7));
-        treeRoot.setRight(new TreeNode(10));
-        treeRoot.getLeft().setLeft(new TreeNode(6));
-        treeRoot.getLeft().setRight(new TreeNode(8));
-        treeRoot.getRight().setLeft(new TreeNode(5));
-        treeRoot.getRight().getLeft().setRight(new TreeNode(13));
+        TreeNode<Integer> treeRoot = new TreeNode<>(9);
+        treeRoot.setLeft(new TreeNode<>(7));
+        treeRoot.setRight(new TreeNode<>(10));
+        treeRoot.getLeft().setLeft(new TreeNode<>(6));
+        treeRoot.getLeft().setRight(new TreeNode<>(8));
+        treeRoot.getRight().setLeft(new TreeNode<>(5));
+        treeRoot.getRight().getLeft().setRight(new TreeNode<>(13));
         treeRoot.pre(treeRoot);
         System.err.println();
         treeRoot.print(treeRoot);
