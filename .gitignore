@@ -4,3 +4,4 @@
 *.iml
 # Java class files
 *.class
+/.idea/
