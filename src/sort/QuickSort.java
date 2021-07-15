@@ -1,5 +1,7 @@
 package sort;
 
+import java.util.concurrent.TimeUnit;
+
 public class QuickSort {
 
 //    private static void quickSort(int[] nums, int low, int high) {
@@ -46,30 +48,34 @@ public class QuickSort {
 
     //快速排序算法的切割链表
     public static int partition(int arr[], int left, int right) {
-        int pivotkey = arr[left];
-        //枢轴选中后永远不变，最终在中间，前边小后变大
+        int pivotKey = arr[left];
+        //枢轴选中后永远不变，最终在中间，前边小后边大
         while (left < right) {
-            while (left < right && arr[right] >= pivotkey) {
+            while (left < right && arr[right] >= pivotKey) {
                 --right;
             }
             arr[left] = arr[right];
             //此时arr[left]为空，不过它的值保存着pivot中
-            while (left < right && arr[left] <= pivotkey) {
+            while (left < right && arr[left] <= pivotKey) {
                 ++left;
             }
             arr[right] = arr[left];
-
-
         }
-        arr[left] = pivotkey;
+        arr[left] = pivotKey;
         return left;
     }
 
     public static void main(String[] args) {
+        Thread.currentThread().setName("快排");
         int nums[] = {3, 2, 4, 5, 6, 7, 2, 9, 6, 4/*4, 6, 9, 2, 7, 6, 5, 4, 2, 3*/};
         quickSort(nums, 0, nums.length - 1);
         for (int num : nums) {
             System.err.print(num + "\t");
+        }
+        try {
+            TimeUnit.SECONDS.sleep(60);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }

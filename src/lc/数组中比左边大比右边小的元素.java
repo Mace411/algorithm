@@ -1,7 +1,5 @@
 package lc;
 
-import java.util.Random;
-
 /**
  * 给定一个乱序的数组，找出数组中比其左边的元素大，比右边元素小的数
  */
@@ -79,6 +77,7 @@ public class 数组中比左边大比右边小的元素 {
      * 只要看左边的就可以了，取数的时候，用原数组候选数的下标去右区间最小值数组取到的就是这个数右边区间的最小值
      * 数组的这些关系最好画图来解决，不然容易出错，而且画图画多了，对这类问题应该更加容易想象。
      * 时间复杂度O(n),遍历了两次数组。空间复杂度是O(n),需要一个跟原数组一样大小的右区间最小值数组
+     *
      * @param nums
      * @return
      */
@@ -124,7 +123,7 @@ public class 数组中比左边大比右边小的元素 {
 //        int middleNum = findMiddleNum0(nums);
 //        System.err.println(middleNum);
 //        int nArr[] = {1,2,3,1,2,0,5,6};
-        int nArr[] = {1,2,3,4,5,6,7};
+        int nArr[] = {1, 2, 3, 4, 5, 6, 7};
         int[] allMiddleNums = findAllMiddleNums(nArr);
         for (int allMiddleNum : allMiddleNums) {
             System.err.print(nArr[allMiddleNum] + "\t");

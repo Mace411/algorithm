@@ -42,7 +42,7 @@ public class TreeNode<T> {
 
     public void pre(TreeNode treeRoot) {
         if (treeRoot == null) {
-            return ;
+            return;
         }
         System.err.print(treeRoot.value + "\t");
         pre(treeRoot.getLeft());
@@ -57,13 +57,46 @@ public class TreeNode<T> {
         queue.add(treeRoot);
         while (!queue.isEmpty()) {
             TreeNode tempNode = queue.poll();
-            if (tempNode.left != null) {
-                queue.add(tempNode.left);
-            }
-            if (tempNode.right != null) {
-                queue.add(tempNode.right);
-            }
+//            if (tempNode.left != null) {
+//                queue.add(tempNode.left);
+//            }
+//            if (tempNode.right != null) {
+//                queue.add(tempNode.right);
+//            }
             System.err.print(tempNode.value + "\t");
+        }
+    }
+
+    public void printLayer(TreeNode treeNode) {
+        if (treeNode == null) {
+            return;
+        }
+        Queue<TreeNode> curLayer = new LinkedList<>();
+        Queue<Queue<TreeNode>> queueLayer = new LinkedList<>();
+        curLayer.add(treeNode);
+        queueLayer.add(new LinkedList<>(curLayer));
+        Queue<TreeNode> nextLayer = new LinkedList<>();
+        while (!curLayer.isEmpty()) {
+            TreeNode poll = curLayer.poll();
+            if (poll.left != null) {
+                nextLayer.add(poll.left);
+            }
+            if (poll.right != null) {
+                nextLayer.add(poll.right);
+            }
+            if (curLayer.isEmpty()) {
+                curLayer = new LinkedList<>(nextLayer);
+                queueLayer.add(nextLayer);
+                nextLayer = new LinkedList<>();
+            }
+        }
+        while (!queueLayer.isEmpty()) {
+            Queue<TreeNode> poll = queueLayer.poll();
+            while (!poll.isEmpty()) {
+                TreeNode node = poll.poll();
+                System.err.print(node.value + "\t");
+            }
+            System.err.println();
         }
     }
 
@@ -76,8 +109,18 @@ public class TreeNode<T> {
         treeRoot.getLeft().setRight(new TreeNode<>(8));
         treeRoot.getRight().setLeft(new TreeNode<>(5));
         treeRoot.getRight().getLeft().setRight(new TreeNode<>(13));
-        treeRoot.pre(treeRoot);
-        System.err.println();
-        treeRoot.print(treeRoot);
+//        treeRoot.pre(treeRoot);
+//        System.err.println();
+        treeRoot.printLayer(treeRoot);
+
+        int n = 56;
+        int rer = 0;
+        for (int i = 32; i > 0; i--) {
+            int temp = (n >> i - 1) & 1;
+            temp = temp << 32 - i;
+            rer |= temp;
+        }
+        System.err.println(Integer.valueOf(rer));
+
     }
 }
