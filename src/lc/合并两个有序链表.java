@@ -50,28 +50,48 @@ public class 合并两个有序链表 {
         return pre.next;
     }
 
-    public static void main(String[] args) {
-//        ListNode l1 = new ListNode(1);
-//        l1.next = new ListNode(3);
-//        l1.next.next = new ListNode(5);
-////        l1.next.next.next = new ListNode(7);
-////        l1.next.next.next.next = new ListNode(9);
-//
-//        ListNode l2 = new ListNode(2);
-//        l2.next = new ListNode(4);
-//        l2.next.next = new ListNode(6);
-//        l2.next.next.next = new ListNode(8);
-//        l2.next.next.next.next = new ListNode(10);
-//
-//        mergeTwoLists(l1, l2);
-        //目标对象
-        A a = new A();
-        AProxy proxy = new AProxy(a);
+    public static ListNode mergeTwoLists1(ListNode l1, ListNode l2) {
+        ListNode pre = new ListNode();
+        ListNode cur = pre;
+        ListNode l1Cur = l1;
+        ListNode l2Cur = l2;
+        while (l1Cur != null && l2Cur != null) {
+            if (l1Cur.val < l2Cur.val) {
+                cur.next = l1Cur;
+                l1Cur = l1Cur.next;
+            } else {
+                cur.next = l2Cur;
+                l2Cur = l2Cur.next;
+            }
+            cur = cur.next;
+        }
+        cur.next = l1Cur == null ? l2Cur : l1Cur;
+        return pre.next;
+    }
 
-        Object proxyObj =  Proxy.newProxyInstance(a.getClass().getClassLoader(), a.getClass().getInterfaces(), proxy);
-        Parent1 p1 = (Parent1) proxyObj;
-        p1.speak();
-        p1.walk();
+    public static void main(String[] args) {
+        ListNode l1 = new ListNode(1);
+        l1.next = new ListNode(3);
+        l1.next.next = new ListNode(5);
+        l1.next.next.next = new ListNode(7);
+        l1.next.next.next.next = new ListNode(9);
+
+        ListNode l2 = new ListNode(2);
+        l2.next = new ListNode(4);
+        l2.next.next = new ListNode(6);
+        l2.next.next.next = new ListNode(8);
+        l2.next.next.next.next = new ListNode(10);
+
+        ListNode listNode = mergeTwoLists1(l1, l2);
+
+//        //目标对象
+//        A a = new A();
+//        AProxy proxy = new AProxy(a);
+//
+//        Object proxyObj =  Proxy.newProxyInstance(a.getClass().getClassLoader(), a.getClass().getInterfaces(), proxy);
+//        Parent1 p1 = (Parent1) proxyObj;
+//        p1.speak();
+//        p1.walk();
 //        Parent2 p2 = (Parent2) proxyObj;
 //        p2.sleep();
     }

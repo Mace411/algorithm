@@ -6,7 +6,7 @@ public class TestSingleton {
     /**
      * 构造函数私有，禁止外部实例化
      */
-    private TestSingleton() {};
+    private TestSingleton() {}
 
     public static TestSingleton getInstance() {
         if (singleton == null) {

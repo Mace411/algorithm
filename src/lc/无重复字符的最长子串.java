@@ -17,7 +17,8 @@ public class 无重复字符的最长子串 {
      * map存已经遍历的字符和index，直到出现相同的字符时，修改开始的index
      * 动态规划 : f(i):index = i的时候，size的值
      * f(i + 1) = max(size, i - newIndex + 1)
-     *
+     * 时间复杂度O(n)
+     * 空间复杂度O(字符数(有多少个不同的字符))
      * @param s
      * @return
      */

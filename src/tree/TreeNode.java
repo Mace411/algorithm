@@ -101,26 +101,27 @@ public class TreeNode<T> {
     }
 
     public static void main(String[] args) {
-        //顺序 9 7 10 6 8 5 13
-        TreeNode<Integer> treeRoot = new TreeNode<>(9);
-        treeRoot.setLeft(new TreeNode<>(7));
-        treeRoot.setRight(new TreeNode<>(10));
-        treeRoot.getLeft().setLeft(new TreeNode<>(6));
-        treeRoot.getLeft().setRight(new TreeNode<>(8));
-        treeRoot.getRight().setLeft(new TreeNode<>(5));
-        treeRoot.getRight().getLeft().setRight(new TreeNode<>(13));
-//        treeRoot.pre(treeRoot);
-//        System.err.println();
-        treeRoot.printLayer(treeRoot);
+//        //顺序 9 7 10 6 8 5 13
+//        TreeNode<Integer> treeRoot = new TreeNode<>(9);
+//        treeRoot.setLeft(new TreeNode<>(7));
+//        treeRoot.setRight(new TreeNode<>(10));
+//        treeRoot.getLeft().setLeft(new TreeNode<>(6));
+//        treeRoot.getLeft().setRight(new TreeNode<>(8));
+//        treeRoot.getRight().setLeft(new TreeNode<>(5));
+//        treeRoot.getRight().getLeft().setRight(new TreeNode<>(13));
+////        treeRoot.pre(treeRoot);
+////        System.err.println();
+//        treeRoot.printLayer(treeRoot);
 
         int n = 56;
+        System.err.println(Integer.toBinaryString(n));
         int rer = 0;
         for (int i = 32; i > 0; i--) {
             int temp = (n >> i - 1) & 1;
             temp = temp << 32 - i;
             rer |= temp;
         }
-        System.err.println(Integer.valueOf(rer));
+        System.err.println(Integer.toBinaryString(rer));
 
     }
 }
